@@ -43,16 +43,19 @@ function handleClick() {
     <button
         type="button"
         @click="handleClick"
-        class="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 transition hover:brightness-110"
+        class="relative aspect-square w-full overflow-hidden rounded-3xl border border-slate-800 transition duration-200 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-amber-300/80"
         :class="[
-            isLight ? 'bg-slate-100/80 dark:bg-slate-700/70' : 'bg-slate-900/95 dark:bg-slate-800',
-            selected ? 'ring-4 ring-emerald-400/80' : '',
+            isLight ? 'chess-square-light text-slate-900' : 'chess-square-dark text-slate-950',
+            selected ? 'ring-4 ring-amber-300/80' : '',
             legal ? 'ring-4 ring-cyan-400/80' : '',
         ]"
     >
-        <div class="absolute inset-0"></div>
-        <div class="relative flex h-full w-full items-center justify-center text-2xl">
+        <div class="relative flex h-full w-full items-center justify-center">
             <ChessPiece v-if="piece" :piece="piece" />
         </div>
+
+        <span v-if="legal" class="absolute inset-x-3 bottom-3 flex justify-center">
+            <span class="h-2.5 w-2.5 rounded-full bg-cyan-400/90 shadow-[0_0_0_8px_rgba(34,211,238,0.08)]"></span>
+        </span>
     </button>
 </template>

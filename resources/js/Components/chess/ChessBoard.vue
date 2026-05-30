@@ -46,26 +46,42 @@ function onSquareClick(file, row) {
 </script>
 
 <template>
-    <div class="space-y-2">
-        <div class="grid grid-cols-8 gap-2 text-center text-xs uppercase text-slate-400">
-            <div v-for="file in files" :key="file" class="py-1">{{ file }}</div>
+    <div class="space-y-4 chess-board-shell">
+        <div class="grid grid-cols-8 gap-1 text-center text-[0.65rem] uppercase tracking-[0.28em] text-slate-400">
+            <div v-for="file in files" :key="`top-${file}`" class="py-1">{{ file }}</div>
         </div>
 
-        <div class="space-y-2">
-            <div v-for="row in rows" :key="row" class="grid grid-cols-8 gap-2">
-                <ChessSquare
-                    v-for="file in files"
-                    :key="`${file}${row}`"
-                    :file="file"
-                    :row="row"
-                    :piece="board[8 - row][files.indexOf(file)]"
-                    :isLight="isLightSquare(file, row)"
-                    :selected="isSelectedSquare(file, row)"
-                    :legal="isLegalSquare(file, row)"
-                    :coordinates="{ file, row }"
-                    @squareClick="onSquareClick"
-                />
+        <div class="grid grid-cols-[auto_1fr] gap-3">
+            <div class="grid grid-rows-8 gap-1">
+                <div
+                    v-for="row in rows"
+                    :key="`rank-${row}`"
+                    class="flex items-center justify-center text-sm font-medium text-slate-400"
+                >
+                    {{ row }}
+                </div>
             </div>
+
+            <div class="space-y-1">
+                <div v-for="row in rows" :key="`squares-${row}`" class="grid grid-cols-8 gap-1">
+                    <ChessSquare
+                        v-for="file in files"
+                        :key="`${file}${row}`"
+                        :file="file"
+                        :row="row"
+                        :piece="board[8 - row][files.indexOf(file)]"
+                        :isLight="isLightSquare(file, row)"
+                        :selected="isSelectedSquare(file, row)"
+                        :legal="isLegalSquare(file, row)"
+                        :coordinates="{ file, row }"
+                        @squareClick="onSquareClick"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-8 gap-1 text-center text-[0.65rem] uppercase tracking-[0.28em] text-slate-400">
+            <div v-for="file in files" :key="`bottom-${file}`" class="py-1">{{ file }}</div>
         </div>
     </div>
 </template>

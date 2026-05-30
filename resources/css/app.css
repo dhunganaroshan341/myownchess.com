@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .chess-board-shell {
+        @apply rounded-3xl border border-slate-700 bg-slate-950/95 p-4 shadow-[0_35px_80px_-40px_rgba(15, 23, 42, 0.9)];
+        background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.12), transparent 32%),
+            radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12), transparent 26%);
+    }
+
+    .chess-square-light {
+        @apply bg-[#f0d9b5];
+    }
+
+    .chess-square-dark {
+        @apply bg-[#b58863];
+    }
+
+    .chess-piece-symbol {
+        @apply select-none font-semibold;
+        font-size: 2.2rem;
+        line-height: 1;
+        text-shadow: 0 2px 6px rgba(15, 23, 42, 0.45);
+    }
+}

@@ -26,5 +26,5 @@ const isBlack = props.piece.startsWith('b');
 </script>
 
 <template>
-    <span :class="['select-none', isBlack ? 'text-slate-900' : 'text-slate-100']">{{ symbol }}</span>
+    <span :class="['chess-piece-symbol', isBlack ? 'text-slate-950' : 'text-slate-100']">{{ symbol }}</span>
 </template>
