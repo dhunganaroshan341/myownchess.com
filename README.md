@@ -9,7 +9,7 @@ A modern, interactive chess puzzle platform built with **Laravel**, **Vue 3**, *
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ## 🎯 Features
-
+<!-- to be added the knn, and kmeans later onthis  with stock fish integration -->
 ### Chess Puzzle System
 - ✅ Beautiful, interactive chess board with smooth drag-and-drop support
 - ✅ Intelligent move validation using [chess.js](https://github.com/jhlywa/chess.js)
