@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './chess.css';
+
 @layer components {
     .chess-board-shell {
         @apply rounded-3xl border border-slate-700 bg-slate-950/95 p-4;

@@ -19,8 +19,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'avatar',
+        'rapid_rating',
+        'blitz_rating',
+        'bullet_rating',
+        'puzzle_rating',
+        'last_seen_at',
     ];
 
     /**
@@ -42,7 +49,38 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_seen_at' => 'datetime',
             'password' => 'hashed',
+            'rapid_rating' => 'integer',
+            'blitz_rating' => 'integer',
+            'bullet_rating' => 'integer',
+            'puzzle_rating' => 'integer',
         ];
+    }
+
+    // Relationships
+    public function gameAsWhitePlayer()
+    {
+        return $this->hasMany(Game::class, 'white_player_id');
+    }
+
+    public function gameAsBlackPlayer()
+    {
+        return $this->hasMany(Game::class, 'black_player_id');
+    }
+
+    public function wonGames()
+    {
+        return $this->hasMany(Game::class, 'winner_id');
+    }
+
+    public function puzzleAttempts()
+    {
+        return $this->hasMany(PuzzleAttempt::class);
+    }
+
+    public function createdPuzzles()
+    {
+        return $this->hasMany(Puzzle::class, 'created_by');
     }
 }

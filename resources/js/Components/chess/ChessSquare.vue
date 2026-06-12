@@ -30,6 +30,10 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+    pieceStyle: {
+        type: String,
+        default: 'svg', // 'svg' or 'unicode'
+    },
 });
 
 const emits = defineEmits(['squareClick']);
@@ -51,7 +55,13 @@ function handleClick() {
         ]"
     >
         <div class="relative flex h-full w-full items-center justify-center">
-            <ChessPiece v-if="piece" :piece="piece" />
+            <ChessPiece 
+                v-if="piece" 
+                :piece="piece"
+                :style="pieceStyle"
+                size="56"
+                :animate="true"
+            />
         </div>
 
         <span v-if="legal" class="absolute inset-x-3 bottom-3 flex justify-center">

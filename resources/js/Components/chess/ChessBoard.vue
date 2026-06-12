@@ -15,6 +15,10 @@ const props = defineProps({
         type: Array,
         required: true,
     },
+    pieceStyle: {
+        type: String,
+        default: 'svg', // 'svg' or 'unicode'
+    },
 });
 
 const emits = defineEmits(['squareClick']);
@@ -74,6 +78,7 @@ function onSquareClick(file, row) {
                         :selected="isSelectedSquare(file, row)"
                         :legal="isLegalSquare(file, row)"
                         :coordinates="{ file, row }"
+                        :pieceStyle="pieceStyle"
                         @squareClick="onSquareClick"
                     />
                 </div>
