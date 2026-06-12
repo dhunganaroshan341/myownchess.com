@@ -1,0 +1,16 @@
+updated:
+    - database/migrations/0001_01_01_000000_create_users_table.php
+created:
+    - database/migrations/2026_05_30_185526_create_games_table.php
+    - database/migrations/2026_05_30_185527_create_moves_table.php
+    - database/migrations/2026_05_30_185528_create_puzzles_table.php
+    - database/migrations/2026_05_30_185529_create_puzzle_attempts_table.php
+    - database/migrations/2026_05_30_185530_create_themes_table.php
+    - database/migrations/2026_05_30_185531_create_puzzle_theme_table.php
+models:
+    User: { name: string, username: 'string unique nullable', email: 'string unique', email_verified_at: 'timestamp nullable', password: string, remember_token: rememberToken, avatar: 'string nullable', rapid_rating: 'unsignedInteger default:1200', blitz_rating: 'unsignedInteger default:1200', bullet_rating: 'unsignedInteger default:1200', puzzle_rating: 'unsignedInteger default:1200', last_seen_at: 'timestamp nullable', timestamps: timestamps, relationships: { hasMany: 'Game:whitePlayer, Game:blackPlayer, PuzzleAttempt' } }
+    Game: { white_player_id: 'foreign:user', black_player_id: 'foreign:user', winner_id: 'foreign:user nullable', current_fen: text, status: 'enum:pending,active,completed,aborted default:pending', result: 'string nullable', time_control: string, started_at: 'timestamp nullable', ended_at: 'timestamp nullable', relationships: { belongsTo: 'User:whitePlayer, User:blackPlayer, User:winner', hasMany: Move } }
+    Move: { game_id: foreign, move_number: unsignedInteger, side: 'enum:white,black', uci_move: string, san_move: 'string nullable', fen_before: text, fen_after: text, move_time_ms: 'unsignedBigInteger nullable', relationships: { belongsTo: Game } }
+    Puzzle: { title: string, slug: 'string unique nullable', starting_fen: text, solution: json, rating: 'unsignedInteger default:1200', description: 'text nullable', created_by: 'foreign:user nullable', is_active: 'boolean default:true', relationships: { belongsTo: 'User:creator', belongsToMany: Theme, hasMany: PuzzleAttempt } }
+    PuzzleAttempt: { user_id: foreign, puzzle_id: foreign, success: boolean, moves_played: 'json nullable', time_taken_ms: 'unsignedBigInteger nullable', relationships: { belongsTo: 'User, Puzzle' } }
+    Theme: { name: string, slug: 'string unique', relationships: { belongsToMany: Puzzle } }

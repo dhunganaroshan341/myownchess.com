@@ -20,6 +20,11 @@ class Puzzle extends Model
         'is_active',
     ];
 
+    protected $attributes = [
+        'rating' => 1200,
+        'is_active' => true,
+    ];
+
     protected $casts = [
         'solution' => 'array',
         'is_active' => 'boolean',
