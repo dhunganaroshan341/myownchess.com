@@ -54,11 +54,11 @@ const animationClass = computed(() => props.animate ? 'chess-piece-animate' : ''
             <!-- Piece specific SVG rendering -->
             <defs>
                 <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="2" stdDeviation="3" :flood-color="shadowColor" flood-opacity="0.4" />
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" v-bind:["'flood-color'"]="shadowColor" flood-opacity="0.4" />
                 </filter>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop :offset="0" :stop-color="fillColor" stop-opacity="1" />
-                    <stop :offset="100%" :stop-color="fillColor" stop-opacity="0.85" />
+                    <stop offset="0%" :style="{ stopColor: fillColor, stopOpacity: 1 }" />
+                    <stop offset="100%" :style="{ stopColor: fillColor, stopOpacity: 0.85 }" />
                 </linearGradient>
             </defs>
 

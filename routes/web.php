@@ -18,6 +18,10 @@ Route::get('/puzzle', function () {
     return Inertia::render('ChessPuzzle');
 })->name('puzzle');
 
+Route::get('/match', function () {
+    return Inertia::render('Match');
+})->name('match');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
